@@ -1,0 +1,186 @@
+{% extends "main_layout.html" %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SCAN YOUR CV HERE</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='scan.css') }}">
+
+    <style>
+      .container-result {
+    text-align: center;
+    width: 1000%;
+    max-width: 800px;
+    background-color: #ffffff;
+    padding: 2rem;
+    border-radius: 5px;
+    margin-top: 90px;
+    margin-left: 170px;
+    margin-bottom: 100px;
+    position: relative; /* Untuk pseudo-element */
+    z-index: 1; /* Supaya konten tetap terlihat */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden; /* Supaya animasi tetap rapi */
+}
+
+.container-result::before {
+    content: '';
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    right: -3px;
+    bottom: -3px;
+    border-radius: 18px; /* Agar mengikuti radius container */
+    background: linear-gradient(45deg, #E68369, #FFC4B3, #FFD5A5, #E68369);
+    background-size: 300% 300%;
+    z-index: -1; /* Tetap di belakang container */
+    animation: glowingBorder 6s infinite linear; /* Tambahkan animasi */
+    filter: blur(4px); /* Efek bercahaya */
+}
+
+/* Keyframes untuk efek glowing */
+@keyframes glowingBorder {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+      
+        .history {
+            font-size: 1rem;
+            color: #333;
+            letter-spacing: 0.1rem;
+            margin-bottom: 1.5rem;
+        }
+        .cv-link {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: #333;
+            justify-content: center;
+        }
+
+        .pdf-icon {
+            width: 48px;
+            height: 48px;
+            margin-right: 5px;
+        }
+
+        /* Styling for the score section */
+        .score-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .score-circle {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background-color: #131842;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 36px;
+            font-weight: bold;
+            color: #E68369;
+            margin-right: 20px;
+        }
+
+        .score-details {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .score-text {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .score-instruction {
+            font-size: 14px;
+            color: #555;
+        }
+
+        .button-result {
+        display: inline-block;
+        padding: 8px 24px;
+        background-color: #E68369; /* Warna utama tombol */
+        color: #fff; /* Warna teks */
+        text-decoration: none; /* Hilangkan garis bawah */
+        border-radius: 8px; /* Buat sudut tombol melengkung */
+        font-size: 16px;
+        font-weight: bold;
+        text-align: center;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Tambahkan bayangan */
+        transition: all 0.3s ease; /* Animasi halus */
+        margin-top: 20px;
+}
+
+        .button-result:hover {
+        background-color: #FBF6E2; /* Warna saat hover */
+        color: #131842; /* Warna teks */
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Perbesar bayangan saat hover */
+        transform: translateY(-2px); /* Efek mengangkat tombol */
+        }
+
+        .button-result:active {
+        transform: translateY(0); /* Kembali ke posisi awal saat diklik */
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Kembalikan bayangan */
+        }
+
+        @media (max-width: 768px) {
+            .container-h {
+                padding: 1rem;
+            }
+            
+            .history {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container-result">
+        <h1 class="mb-3"></h1>
+
+        {% if best_match and best_similarity_score_percent %}
+            <div class="result">
+                <!-- Score display area -->
+                <div class="score-container">
+                    <div class="score-circle">{{ best_similarity_score_percent|round(2) }}%</div>
+                    <!-- <div class="score-details">
+                        <p class="score-text">Keep improving!</p>
+                        <p class="score-instruction">Keep making recommended updates to your resume to reach a score of 75% or more.</p>
+                    </div> -->
+                </div>
+
+                <p class="mt-3 mb-0"><strong>Curriculum Vitae Terbaik :</strong> 
+                    <!-- <a href="{{ best_match.split }}" target="_blank" class="cv-link"> -->
+                    <span class="cv-link">
+                        <img src="{{ url_for('static', filename='image/pdf.png') }}" alt="PDF Icon" class="pdf-icon">
+                        {{ best_match.split('\\')[-1] }}
+                    </span>
+                    <!-- </a> -->
+                </p>
+                <h2>_______________</h2>
+                <pre class="mt-3">{{ best_cv_text | safe }}</pre>
+            </div>
+            <a href="{{ url_for('history') }}" class="button-result">History</a>
+        {% else %}
+            <p>Gagal melakukan scan atau tidak ada hasil yang ditemukan.</p>
+            <a href="{{ url_for('scan') }}" class="button">Kembali ke Scan</a>
+        {% endif %}
+    </div>
+</body>
+</html>
+{% endblock %}

@@ -1,0 +1,66 @@
+{% extends "/admin/layout.html" %}
+{% block content %}
+<div class="page-breadcrumb">
+    <div class="row">
+        <div class="col-7 align-self-center">
+            <h3 class="page-title text-truncate text-dark font-weight-medium mb-1">Detail Hasil Scan CV</h3>
+            <div class="d-flex align-items-center">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb m-0 p-0">
+                        <li class="breadcrumb-item"><a href="detail_scan.html">Hasil Scan</a>
+                        </li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        {% for category, message in messages %}
+        <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+            {{ message }}
+        </div>
+        {% endfor %}
+        {% endif %}
+    {% endwith %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Hasil Scan CV</h4>
+                    <div class="row mt-3">
+                        <div class="col-md-4">
+                            <div class="text-center">
+                                <input data-plugin="knob" data-width="150" data-height="150" data-linecap=round
+                                    data-fgColor="#01caf1" value="{{ history['similarity_score']|round(2) }}%" data-skin="tron" data-angleOffset="180"
+                                    data-readOnly=true data-thickness=".2" />
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+
+                            <h5 class="card-title mt-3">CV Terbaik</h5>
+                            <p>
+                                <img src="{{ url_for('static', filename='image/pdf.png') }}" alt="PDF Icon" style="width: 48px; height: 48px; margin-right: 5px;">
+                                {{ history['best_cv_path'].split('\\')[-1] }}
+                            </p>
+                        </div>
+                        <div class="col-md-12">
+                            <hr>
+                            <pre class="mt-3">{{ history['best_cv_text'] | safe }}</pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- *************************************************************** -->
+    <!-- End Top Leader Table -->
+    <!-- *************************************************************** -->
+</div>
+
+{% endblock %}

@@ -1,0 +1,173 @@
+{% extends "main_layout.html" %}
+{% block content %}
+<div class="container custom-container">
+    <div class="row">
+        <!-- Kolom untuk Form Login -->
+         <div class="col-md-12">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    <div class="alert-messages">
+                        {% for category, message in messages %}
+                            <div class="alert alert-{{ category }}">{{ message }}</div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endwith %}
+         </div>
+        <div class="col-md-6 login-form-container">
+            <h1 class="login-title">Login Here!</h1>
+            <div class="social-buttons">
+                <!-- Tombol Sign in dengan Google -->
+                <button type="button" class="btn btn-google">
+                    <img src="{{ url_for('static', filename='image/google.png') }}" alt="Google Icon" class="icon-google">
+                    Sign in with Google
+                </button>
+                
+              
+            </div>
+
+            <!-- Form Login -->
+            <form action="{{ url_for('req_login') }}" method="post">
+                <div class="form-outline mb-1">
+                    <label class="form-label" for="loginEmail">Email</label>
+                    <input type="email" name="email" id="loginEmail" class="form-control" placeholder="" />
+                </div>
+
+                <div class="form-outline mb-1">
+                    <label class="form-label" for="loginPassword">Password</label>
+                    <input type="password" name="password" id="loginPassword" class="form-control" placeholder="" />
+                </div>
+
+                <!-- Tombol Login -->
+                <button type="submit" class="btn btn-login">Login</button>
+
+                <!-- Link untuk Mendaftar -->
+                <div class="register-link">
+                    <p>Not Registered? <a href="{{ url_for('register') }}">Create an account</a></p>
+                </div>
+            </form>
+        </div>
+
+        <!-- Kolom untuk Gambar -->
+        <div class="col-md-6">
+            <img src="{{ url_for('static', filename='image/login.png') }}" alt="login" class="login-image">
+        </div>
+    </div>
+</div>
+
+<style>
+.custom-container {
+  background-color: #FBF6E2; /* Warna latar belakang */
+  padding: 10px; /* Jarak dalam kontainer */
+  border-radius: 10px; /* Membulatkan sudut kontainer */
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2); /* Bayangan kontainer */
+  width: 700px; /* Lebar kontainer diatur menjadi 60% dari lebar halaman */
+  margin: 100px auto; /* Margin atas-bawah 100px, margin kiri-kanan auto untuk memusatkan */
+  max-width: 620px; /* Lebar maksimum kontainer */
+  margin-left: 250px;
+  margin-top: 150px;
+  margin-bottom: 130px;
+}
+.icon-google {
+    width: 18px;
+    height: 18px;
+    margin-right: 8px; /* Jarak antara ikon dan teks */
+    vertical-align: middle;
+}
+
+/* Form Login Container */
+.login-form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+/* Judul Login */
+.login-title {
+  font-size: 25px; /* Ukuran font */
+  font-weight: medium; /* Teks tebal */
+  color: #131842; /* Warna teks */
+  text-align: center; /* Rata tengah */
+  margin-bottom: 19px; /* Jarak bawah */
+  margin-top: 10px;
+  margin-left: 40px;
+}
+/* Tombol Sosial Media */
+.social-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px; /* Jarak bawah */
+  width: 80%;
+}
+.social-buttons .btn {
+  width: 100%; /* Mengambil seluruh lebar kontainer */
+  margin: 2px -0px; /* Margin kecil antara tombol vertikal */
+  padding: 10px 0; /* Padding atas dan bawah, tanpa padding kiri dan kanan */
+  border-radius: 7px; /* Membulatkan sudut tombol */
+  font-size: 12px; /* Ukuran font yang lebih besar */
+  color: #fff; /* Warna teks putih */
+  border: none; /* Hilangkan border */
+  cursor: pointer; /* Pointer saat hover */
+  margin-left: 25px;
+}
+.btn-google {
+  background-color: #4285F4; /* Warna tombol Google */
+}
+.btn-facebook {
+  background-color: #3C5A9A; /* Warna tombol Facebook */
+}
+/* Form Input */
+.form-outline.mb-1{
+  width:300px;
+  margin-bottom: 0;
+  margin-left:40px
+  }
+
+.form-label {
+  font-weight: medium;
+  font-size: 12px;
+  margin-bottom: 2px; /* Jarak bawah */
+  margin-top: -10px;
+}
+/* Tombol Login */
+.btn-login {
+  background-color: #131842; /* Warna tombol login */
+  color: #fff; /* Warna teks */
+  width: 300px;
+  padding: 7px;
+  border: none;
+  border-radius: 5px;
+  font-size: 12px;
+  cursor: pointer;
+  margin-bottom: 5px; /* Jarak bawah */
+  margin-left: 40px;
+  margin-top: 18px;
+}
+.btn-login:hover {
+  background-color: #E68369; /* Warna tombol saat hover */
+}
+/* Link untuk Mendaftar */
+.register-link {
+  text-align: center;
+  font-size: 12px;
+  margin-left: 50px;
+  margin-top: 5px;
+}
+.register-link a {
+  text-decoration: none;
+  color: #131842; /* Warna link */
+}
+.register-link a:hover {
+  text-decoration: underline;
+}
+/* Gambar Login */
+.login-image {
+  width: 85%;
+  height: auto;
+  display: block;
+  margin-top: 50px;
+  margin-left: 30px;
+}
+
+</style>
+{% endblock %}

@@ -1,0 +1,477 @@
+/*NAVBAR*/
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0; 
+  display: flex;
+  justify-content: space-between; /* Membagi elemen secara merata */
+  align-items: center;
+  background-color: #131842;
+  padding: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Tambahkan bayangan di bawah */
+  color: #FFFFFF;
+  width: 100%;
+  z-index: 1000; 
+}
+.navbar img {
+  height: 62px;
+  width: auto;
+  margin-left: 30px; /* Pastikan gambar berada di kanan */
+  cursor: pointer;
+}
+.navbar .menu-auth-container {
+  display: flex;
+  align-items: center;
+  gap: 20px; /* Jarak antar menu dan auth-buttons */
+}
+.navbar .menu {
+  display: flex;
+  gap: 20px;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+}
+.navbar .menu a {
+  color: #FFFFFF; /* Warna teks default */
+  text-decoration: none; /* Menghilangkan garis bawah pada link */
+  position: relative; /* Membuat elemen relative untuk penggunaan pseudo-element */
+}
+.navbar .menu a::after {
+  content: '';
+  position: absolute;
+  width: 0; /* Awal lebar garis bawah */
+  height: 2px; /* Ketebalan garis bawah */
+  background-color: #E68369; /* Warna garis bawah */
+  left: 0;
+  bottom: -2px; /* Posisi garis di bawah teks */
+  transition: width 0.3s ease-in-out; /* Durasi dan efek transisi */
+}
+.navbar .menu a:hover::after {
+  width: 100%; /* Lebar garis penuh saat di-hover */
+}
+.navbar .menu a:hover {
+  color: #E68369; /* Mengubah warna teks saat hover */
+  text-decoration: none; /* Tetap tanpa underline pada teks */
+}
+.navbar .auth-buttons {
+  margin-right: 40px; /* Jarak dari tepi kanan */
+  display: flex;
+  gap: 12px;
+}
+.navbar .auth-buttons button {
+  background-color: #FBF6E2;
+        color: #131842;
+        border: none;
+        border-radius: none;
+        padding: 4px 11px;
+        cursor: pointer;
+        font-weight: medium;      
+}
+.navbar .auth-buttons button:hover {
+  background-color: #ECCEAE;
+}
+
+
+/* DASHBOARD KONTEN 1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111 */
+.container-dashboard {
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; /* Vertikal sejajar di tengah */
+  padding: 30px;  
+  width: 172%; /* Menggunakan lebar penuh elemen induk */
+  background-color: #131842;
+  margin-left: -80px;
+ 
+}
+.col1-dashboard, .col2-dashboard {
+  flex: 1; /* Membuat kedua kolom memiliki ukuran fleksibel yang sama */
+  display: flex;
+  flex-direction: column; /* Menyesuaikan konten vertikal */
+  justify-content: center; /* Pusatkan konten secara vertikal */
+  align-items: center; /* Pusatkan konten secara horizontal */
+  padding: 20px; /* Padding internal kolom */
+  min-height: 300px; /* Pastikan tinggi minimum sama */
+  box-sizing: border-box;
+}
+.col1-dashboard {
+  margin-left: 0px; /* Jarak horizontal antara kedua kolom */
+
+}
+.col2-dashboard {
+  margin-top: 30px;
+  margin-left: 100px; /* Jarak horizontal antara kedua kolom */
+  margin-right: 30px;
+}
+
+.horizontal-text {
+  margin-left: 60px; /* Atur margin kiri sesuai kebutuhan */
+}
+.horizontal-text h1 {
+  margin: 0; /* Menghapus margin default */
+  font-size: 50px; /* Ukuran font untuk judul */
+  line-height: 1; /* Mengatur tinggi garis agar rapat */
+  margin-top: 60px; /* Jarak atas untuk judul */
+  flex-direction: row; 
+ 
+}
+.half-color {
+  color: #ffffff; /* Warna setengah pertama */
+}
+.normal-color {
+  color: #E68369; /* Warna setengah kedua */
+}
+.horizontal-text p {
+  margin-top: 15px; /* Jarak atas untuk paragraf */
+  font-size: 15px; /* Ukuran font untuk deskripsi */
+  color: #ffffff; /* Warna teks deskripsi */
+  line-height: 1.3; /* Mengatur tinggi garis agar rapat */
+}
+.scan-button {
+  margin-top: 20px; /* Jarak atas untuk tombol */
+  display: inline-block; /* Mengatur tombol agar inline tapi sebagai blok */
+  padding: 7px 50px; /* Padding untuk tombol */
+  font-size: 17px; /* Ukuran font tombol */
+  font-weight: bold; /* Font tebal */
+  background-color: #FBF6E2; /* Warna latar belakang tombol */
+  border: none; /* Tanpa border */
+  border-radius: 5px; /* Sudut border membulat */
+  cursor: pointer; /* Mengubah kursor saat hover */
+  text-align: center; /* Rata tengah teks di dalam tombol */
+  text-decoration: none; /* Menghilangkan dekorasi teks */
+  color: #131842 !important; /* Warna teks tombol dan gunakan `!important` untuk prioritas */
+}
+.scan-button:hover {
+  background-color: #E68369; /* Ubah warna latar tombol saat hover */
+}
+
+
+
+/*DASHBOARD KONTEN 2222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222*/
+.about-container {
+  display: flex;
+  align-items: center;
+  margin-top: 50px;
+  justify-content: center; /* Pindah ke tengah */
+  padding: 20px; /* Tambahkan padding untuk jarak */
+  max-width: 1000px; /* Atur lebar maksimum kontainer */
+  width: 100%; /* Pastikan lebar kontainer penuh */
+  margin-left: 100px;
+}
+.about-container img {
+  width: 250px; /* Sesuaikan ukuran gambar */
+  margin-left: 200px; /* Jarak antara gambar dan teks */
+  margin-top: 90px;
+}
+.about-container .text-container {
+  max-width: 600px; /* Perbesar lebar maksimum agar teks bisa lebih panjang */
+  width: 100%; /* Pastikan lebar penuh dalam kontainer */
+  margin-top: 90px;
+}
+.about-container .text-container h2 {
+  font-weight: bold; /* Judul bold */
+  font-size: 30px; /* Ukuran font untuk judul */
+  margin: 0;
+  padding: 0;
+  margin-right: 105px;
+  width: 100%; /* Pastikan lebar penuh dalam kontainer */
+  margin-bottom: 20px;
+}
+.about-container .text-container p {
+  font-size: 13px; /* Ukuran font untuk paragraf */
+  line-height: 1.5; /* Tinggi garis untuk paragraf */
+  margin-top: 10px; /* Jarak atas untuk paragraf */
+  text-align: justify; /* Rata kiri-kanan untuk teks */
+  margin-right: 300px;
+  width: 100%; /* Memastikan teks memanjang sesuai kontainer */
+}
+
+
+/* DASHBOARD KONTEN 3333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333*/
+.content-container {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column; /* Mengatur konten dalam kolom */
+  align-items: center; /* Memusatkan konten secara horizontal */
+  text-align: center; /* Rata tengah untuk teks */
+  padding: 20px; /* Padding untuk ruang */
+}
+.text-container {
+  display: flex; /* Menggunakan flexbox untuk mengatur posisi */
+  flex-direction: column; /* Mengatur elemen secara vertikal */
+  align-items: center; /* Mengatur elemen child (h2, p) agar berada di tengah */
+  justify-content: center; /* Mengatur elemen child secara vertikal di tengah */
+  max-width: 800px; /* Batasi lebar teks agar tetap rapi */
+  margin: 0 auto; /* Membuat .text-container berada di tengah secara horizontal */
+  text-align: center; /* Agar teks dalam .text-container rata tengah */
+  padding: 20px; /* Menambahkan padding untuk jarak */
+  width: 100%; /* Pastikan lebar penuh dalam kontainer */
+}
+.text-container h2 {
+  font-size: 24px; /* Ukuran font untuk judul */
+  margin: 0; /* Menghilangkan margin default */
+  width: 100%; /* Memastikan teks memanjang sesuai kontainer */
+  margin-left: 400px;
+}
+.text-container p {
+  font-size: 13px; /* Ukuran font untuk paragraf */
+  line-height: 1.5; /* Tinggi garis untuk paragraf */
+  margin-top: 35px; /* Jarak atas untuk paragraf */
+  margin-left: 400px;
+  width: 100%; /* Memastikan teks memanjang sesuai kontainer */
+}
+.content-container img {
+  max-width: 250px; /* Mengatur agar gambar responsif */
+  height: auto; /* Memastikan tinggi otomatis sesuai lebar */
+  margin-left: 380px;
+  margin-top: 40px;
+}
+
+
+/* DASHBOARD KONTEN 444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444*/
+.cta-section {
+  position: relative; /* Posisi relatif untuk referensi gambar keluar */
+  display: flex;
+  align-items: center; /* Vertikal rata tengah */
+  justify-content: flex-start; /* Konten rata kiri */
+  padding: 20px 0; /* Tambahkan padding atas dan bawah */
+  width: 100%; /* Lebar penuh layar */
+  margin: 50px 0; /* Atur margin atas dan bawah */
+  margin-top: 150px;
+  background-color: #ECCEAE; /* Tambahkan warna latar untuk kontainer jika diperlukan */
+}
+.text-section {
+  max-width: 900px; /* Atur batas lebar teks agar tetap rapi */
+  padding-right: 50px; /* Jarak antar teks dan gambar */
+  background-color: #ECCEAE; /* Background container teks */
+  padding: 20px; /* Tambahkan padding dalam teks container */
+  border-radius: 10px; /* Sudut border container */
+  margin-left: 100px; /* Jarak dari kiri kontainer */
+}
+.text-section p {
+  font-size: 16px; /* Ukuran font untuk paragraf */
+  line-height: 1.5; /* Tinggi garis untuk paragraf */
+  margin: 0; /* Hilangkan margin */
+  text-align: justify; /* Rata kiri-kanan untuk teks */
+  margin-left: 0; /* Reset margin kiri untuk teks */
+}
+.image-section {
+  position: absolute; /* Posisi absolut untuk gambar */
+  right: -100px; /* Pindah gambar ke luar container */
+  top: 50%; /* Vertikal di tengah */
+  transform: translateY(-50%); /* Menggeser gambar ke atas untuk rata tengah */
+}
+.image-section img {
+  width: 270px; /* Ukuran gambar */
+  height: auto; /* Sesuaikan tinggi gambar agar proporsional */
+  margin-left: 900px;
+}
+
+
+/* DASHBOARD REVIEW KONTEN 555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555*/
+.review-section {
+  width: 100%;
+  margin: 40px auto;
+  text-align: center;
+  position: relative;
+  padding: 25px;
+  background: #FBF6E2;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-top: 3px solid #E68369; /* Menambahkan garis tipis di bagian atas */
+  border-bottom: 3px solid #E68369; /* Menambahkan garis tipis di bagian bawah */
+  margin-left: 190px;
+  margin-top: 100px;
+  margin-bottom: 100px;
+}
+.review-title {
+  font-size: 17px;
+  margin-bottom: 20px;
+  color: #000000;
+  font-weight: bold;
+}
+.review-carousel {
+  display: flex;
+  align-items: center; /* Memposisikan item di tengah secara vertikal */
+  justify-content: center; /* Posisi item di tengah secara horizontal */
+  overflow: hidden;
+  position: relative;
+}
+.review-slide {
+  min-width: 100%; /* Mengurangi ukuran slide agar lebih proporsional */
+  transition: transform 0.5s ease;
+  opacity: 0;
+  display: none;
+  margin: 0 auto; /* Memastikan slide berada di tengah */
+}
+.review-slide.active {
+  opacity: 1;
+  display: block;
+}
+.review-text {
+  font-size: 14px;
+  color: #000000;
+  margin-bottom: 10px;
+}
+.reviewer {
+  font-style: italic;
+  color: #000000;
+}
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 12px;
+  color: white;
+  background-color: #E68369;
+  border: none;
+  border-radius: 50%;
+}
+.prev {
+  left: -50px;
+}
+.next {
+  right: -50px;
+}
+
+
+
+/* FOOTERRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR */
+.footer {
+  position: relative;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #131842;
+  color: #FFFFFF;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  border-top-left-radius: 40px;
+  border-top-right-radius: 40px;
+  z-index: 1000; /* Ensure footer stays above other content */
+}
+.footer .left {
+  margin-left: 20px;
+  display: flex;
+  align-items: center;
+}
+.footer .left img {
+  margin-right: 10px;
+}
+.footer .left-text {
+  display: flex;
+   margin-top: 2px;
+  flex-direction: column;
+}
+.footer .left-text .main-title {
+ 
+  font-family: 'Cinzel Decorative', cursive;
+  font-size: 23px;
+  line-height: 0.9;
+}
+.footer .left-text .sub-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 12px;
+  margin-top: 4px;
+  line-height: 0.3;
+}
+.footer .center {
+  position: absolute;
+  font-size: 10px;
+  bottom: 2px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+}
+.footer .right {
+  margin-right: 70px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  font-size: 13px ;
+}
+.footer .right .links {
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+  font-weight: bold;
+}
+.footer .right .contact-info {
+  display: flex;
+  flex-direction: column;
+  font-size: 10px ;
+  margin-top: 20px; /* Adds space between the links and contact info */
+  text-align: right; /* Aligns text to the right */
+  line-height: 0.9;
+  margin-left: 0px;
+}
+.footer a {
+  color: #FFFFFF;
+  text-decoration: none;
+}
+.footer a:hover {
+  text-decoration: underline;
+}
+
+
+/* CONTACT USSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS */
+.title-contact {
+  color: #E68369; /* Warna untuk judul */
+  margin-bottom: 10px; /* Jarak bawah judul */
+  font-family: 'Cormorant Infant', serif;
+  font-weight: medium;
+  font-size: 40px;
+  margin-top: 80px;
+}
+.form-control-contact {
+  border: 1.5px solid transparent; /* Awalnya transparan */
+  border-radius: 3px; /* Sudut sedikit bulat */
+  width: 100%;
+  padding: 16px 8px;
+  font-size: 13px;
+  background: linear-gradient(#fff, #fff) padding-box, /* Warna dalam */
+              linear-gradient(45deg, #E68369, #FFC4B3) border-box; /* Gradasi */
+  transition: all 0.3s ease; /* Animasi perubahan */
+}
+
+.form-control-contact:focus {
+  outline: none; /* Hilangkan outline bawaan */
+  border-color: #E68369; /* Warna berubah saat fokus */
+  background: linear-gradient(#fff, #fff) padding-box, 
+              linear-gradient(45deg, #FFD5A5, #E68369) border-box; /* Gradasi berubah */
+  box-shadow: 0 0 10px rgba(230, 131, 105, 0.5); /* Efek glowing */
+}
+
+.subtitle-contact {
+  color: #131842; /* Warna teks untuk subtitle */
+  font-size: 13px; /* Ukuran font default, bisa diubah sesuai keinginan */
+  margin-bottom: 20px; /* Jarak bawah subtitle */
+  line-height: 0; /* Jarak antar baris */
+}
+.btn-send {
+  background-color: #E68369; /* Warna latar belakang button */
+  color: white; /* Warna teks button */
+  border: none; /* Menghilangkan border default */
+  border-radius: 5px; /* Sudut bulat pada button */
+  transition: opacity 0.3s; /* Efek transisi saat hover */
+  font-size: 14px;
+  font-weight: 400;
+  margin-bottom: 100px;
+}
+.btn-send:hover {
+  opacity: 0.8; /* Mengurangi opacity saat hover */
+}
+.icon-img {
+  max-width: 450px; /* Ukuran maksimum gambar */
+  margin-top: 50px; /* Jarak atas untuk gambar */
+  margin-left: 120px; /* Mengatur margin otomatis untuk posisi tengah */
+  margin-right: 20px; /* Mengatur margin otomatis untuk posisi tengah */
+  margin-bottom: 100px;
+ 
+ 
+}
+
+
+

@@ -1,0 +1,124 @@
+{% extends "main_layout.html" %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative&family=Poppins&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <title>Dashboard</title>
+</head>
+<body>
+   
+    <div class="container-dashboard">
+        <div class="col1-dashboard">
+            <div class="horizontal-text">
+                <h1>
+                    <span class="half-color">CV Match with</span>
+                    <span class="normal-color">Job Description</span>
+                </h1>                
+                <p>CekCV assists in analyzing CVs to ensure they align with job descriptions.</p>
+                <p>Enjoy your experience with us!</p>
+                <a href="{{ url_for('scan') }}" class="scan-button">Scan Your CV Now</a>
+            </div>
+        </div>
+        <div class="col2-dashboard">
+            <img src="{{ url_for('static', filename='image/match.png') }}" width="480">
+        </div>
+    </div>
+
+    <div class="about-container">
+        <img src="{{ url_for('static', filename='image/tanya.png') }}" alt="Tanya Image">
+        <div class="text-container">
+            <h2 style="font-weight: bold;">Why CekCV was created ?</h2>
+            <p>Proses rekrutmen merupakan tahapan krusial dalam pengelolaan sumber daya manusia yang 
+                menentukan kualitas tenaga kerja suatu organisasi. Namun di era digital saat ini, 
+                perusahaan dihadapkan pada tantangan baru dengan meningkatnya volume lamaran pekerjaan, 
+                terutama di industri yang berkembang pesat. Hal ini menyebabkan proses penyaringan 
+                menjadi semakin rumit dan memakan waktu. </p>
+            <p>Oleh karena itu, diperlukan suatu sistem yang dapat mengoptimalkan proses penyaringan dengan lebih efisien dan efektif. CekCV hadir membantu anda menganalisis dan mengukur kesesuaian antara CV 
+                pelamar dengan deskripsi pekerjaan.</p>
+        </div>
+    </div>
+
+    <div class="content-container">
+        <div class="text-container">
+            <h2 style="font-weight: bold;">Apakah Anda lelah mencari kandidat yang sempurna di antara banyaknya CV?</h2>
+            <p>Dengan layanan unggulan kami, kami siap membantu Anda mencocokkan CV dengan 
+                deskripsi pekerjaan, memastikan Anda mendapatkan kandidat yang paling sesuai.</p>
+        </div>
+        <img src="{{ url_for('static', filename='image/step.png') }}" alt="Step Image">
+    </div>
+
+    <!-- <div class="cta-section">
+        <div class="text-section">
+            <p>Kegiatan menganalisis Curriculum Vitae menjadi lebih mudah serta cepat dan membantu 
+                Anda dalam melakukan proses perekrutan.</p>
+        </div>
+        <div class="image-section">
+            <img src="{{ url_for('static', filename='image/cek.gif') }}" alt="Rekrut Image">
+        </div>
+    </div> -->
+
+     <!-- Review Section -->
+<!-- Review Section -->
+<div class="review-section">
+    <h2 class="review-title">User Reviews</h2>
+    <div class="review-carousel">
+        <div class="review-slide active">
+            <p class="review-text">"CekCV sangat membantu! Sekarang saya bisa menganalisis CV dengan lebih mudah dan cepat."</p>
+            <span class="reviewer">- Dwi, HR Manager</span>
+        </div>
+        <div class="review-slide">
+            <p class="review-text">"Fitur yang sangat membantu untuk screening kandidat, efisien dan efektif!"</p>
+            <span class="reviewer">- Budi, Recruiter</span>
+        </div>
+        <div class="review-slide">
+            <p class="review-text">"Dengan CekCV, saya bisa menilai kesesuaian kandidat dengan lebih objektif."</p>
+            <span class="reviewer">- Siti, Talent Acquisition</span>
+        </div>
+        <div class="review-slide">
+            <p class="review-text">"Proses screening jadi lebih cepat dan akurat dengan CekCV!"</p>
+            <span class="reviewer">- Joko, Hiring Manager</span>
+        </div>
+        <div class="review-slide">
+            <p class="review-text">"Sangat merekomendasikan untuk tim HR yang ingin meningkatkan efisiensi."</p>
+            <span class="reviewer">- Lina, HR Specialist</span>
+        </div>
+    </div>
+    <!-- Navigation Buttons -->
+    <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
+    <button class="next" onclick="moveSlide(1)">&#10095;</button>
+</div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.getElementsByClassName("review-slide");
+
+        function showSlide(index) {
+            if (index >= slides.length) {
+                currentSlide = 0;
+            } else if (index < 0) {
+                currentSlide = slides.length - 1;
+            } else {
+                currentSlide = index;
+            }
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].classList.remove("active");
+            }
+            slides[currentSlide].classList.add("active");
+        }
+
+        function moveSlide(step) {
+            showSlide(currentSlide + step);
+        }
+
+        // Auto slide every 5 seconds
+        setInterval(() => moveSlide(1), 5000);
+    </script>
+
+    </div>
+</body>
+</html>
+{% endblock %}

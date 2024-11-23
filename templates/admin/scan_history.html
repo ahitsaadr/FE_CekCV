@@ -1,0 +1,97 @@
+{% extends "/admin/layout.html" %}
+{% block content %}
+<div class="page-breadcrumb">
+    <div class="row">
+        <div class="col-7 align-self-center">
+            <h3 class="page-title text-truncate text-dark font-weight-medium mb-1">Daftar Scan History</h3>
+            <div class="d-flex align-items-center">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb m-0 p-0">
+                        <li class="breadcrumb-item"><a href="scan_history.html">Scan History</a>
+                        </li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        {% for category, message in messages %}
+        <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+            {{ message }}
+        </div>
+        {% endfor %}
+        {% endif %}
+    {% endwith %}
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex align-items-center mb-4">
+                        <h4 class="card-title">Scan History</h4>
+                        <!-- <div class="ml-auto">
+                            <button type="button" class="btn btn-sm btn-rounded btn-success" data-toggle="modal"
+                            data-target="#add-user"><i class="fas fa-plus"></i>
+                               Tambah User</button>
+                        </div> -->
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table no-wrap v-middle mb-0 table-striped table-hover">
+                            <thead>
+                                <tr class="border-0">
+                                    <th class="border-0 font-14 font-weight-medium text-muted">No
+                                    </th>
+                                    <th class="border-0 font-14 font-weight-medium text-muted">Username
+                                    </th>
+                                    <th class="border-0 font-14 font-weight-medium text-muted">File</th>
+                                    <th class="border-0 font-14 font-weight-medium text-muted">Tanggal</th>
+                                    <th class="border-0 font-14 font-weight-medium text-muted">#</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% if scan_history %}
+                                    {% for scan in scan_history %}
+                                        <tr>
+                                            <td class="border-top-0 text-dark py-4 font-14">{{ loop.index }}</td>
+                                            <td class="px-2 py-4">
+                                                <div class="d-flex no-block align-items-center">
+                                                    <div class="">
+                                                        <h5 class="text-dark mb-0 font-16 font-weight-medium">{{ scan['username'] }}
+                                                        </h5>
+                                                        <span class="text-muted font-14">{{ scan['email'] }}</span>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="border-top-0 text-dark py-4 font-14">{{ scan['best_cv_path'].split('\\')[-1] }}</td>
+                                            <td class="border-top-0 text-dark py-4 font-14">{{ scan['created_at'] }}</td>
+                                            <td class="border-top-0 text-dark py-4 font-14">
+                                                <a href="{{ url_for('detail_scan', scan_id=scan['id']) }}" type="button" class="btn btn-info btn-sm" style="border-radius: 15%;"><i class="fa fa-eye"></i></a>
+                                                <form action="{{ url_for('delete_scan', scan_id=scan['id']) }}" method="POST" style="display:inline;" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?');">
+                                                    <button type="submit" class="btn btn-danger btn-sm" style="border-radius: 15%;"><i class="fa fa-trash"></i></button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                {% else %}
+                                    <tr>
+                                        <td colspan="5">Tidak ada data.</td>
+                                    </tr>
+                                {% endif %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- *************************************************************** -->
+    <!-- End Top Leader Table -->
+    <!-- *************************************************************** -->
+</div>
+
+{% endblock %}

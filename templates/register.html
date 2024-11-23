@@ -1,0 +1,158 @@
+{% extends "main_layout.html" %}
+{% block content %}
+<div class="custom-container-regis">
+    <h1 class="regis-title">Register Here!</h1>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="alert-messages">
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+    <div class="social-buttons-regis">
+        <button type="button" class="btn btn-google">
+            <img src="{{ url_for('static', filename='image/google.png') }}" alt="Google Icon" class="icon-google">
+            Sign in with Google
+        </button>
+        
+    </div>
+
+    <form action="{{ url_for('req_register') }}" method="post" class="regis-form-container">
+        <div class="form-grid">
+            <!-- Field kiri -->
+            <div class="form-outline-regis">
+                <label class="form-label-regis" for="username">Username</label>
+                <input type="text" name="username" id="username" class="form-control-regis" placeholder="Username">
+            </div>
+            <div class="form-outline-regis">
+                <label class="form-label-regis" for="nama">Nama</label>
+                <input type="text" name="nama" id="nama" class="form-control-regis" placeholder="Nama Lengkap">
+            </div>
+            <div class="form-outline-regis">
+                <label class="form-label-regis" for="loginEmail">Email</label>
+                <input type="email" name="email" id="loginEmail" class="form-control-regis" placeholder="Email">
+            </div>
+
+            <!-- Field kanan -->
+            <div class="form-outline-regis">
+                <label class="form-label-regis" for="loginPassword">Password</label>
+                <input type="password" name="password" id="loginPassword" class="form-control-regis" placeholder="Password">
+            </div>
+            <div class="form-outline-regis">
+                <label class="form-label-regis" for="nama_perusahaan">Nama Perusahaan</label>
+                <input type="text" name="nama_perusahaan" id="nama_perusahaan" class="form-control-regis" placeholder="Nama Perusahaan">
+            </div>
+            <div class="form-outline-regis">
+                <label class="form-label-regis" for="jumlah_karyawan">Jumlah Karyawan</label>
+                <input type="number" name="jumlah_karyawan" id="jumlah_karyawan" class="form-control-regis" placeholder="Jumlah Karyawan">
+            </div>
+            <input type="hidden" name="role" value="Guest">
+        </div>
+        <button type="submit" class="btn btn-register">Register</button>
+    </form>
+    <div class="login-link">
+        <p>Have an account? <a href="/login">Login</a></p>
+    </div>
+</div>
+
+<style>
+    .custom-container-regis {
+        background-color: #FBF6E2;
+        padding: 10px;
+        border-radius: 10px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        width: 700px;
+        margin: 100px auto;
+        max-width: 600px;
+        margin-left: 240px;
+        margin-top: 120px;
+    }
+    .icon-google {
+    width: 20px;
+    height: 20px;
+    margin-right: 8px; /* Jarak antara ikon dan teks */
+    vertical-align: middle;
+}
+
+    .regis-title {
+        font-size: 30px;
+        color: #131842;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    .social-buttons-regis {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        width: 50%;
+        margin-left: 140px;
+    }
+    .social-buttons-regis .btn {
+        flex: 1;
+        padding: 7px;
+        border-radius: 7px;
+        font-size: 14px;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+        margin-bottom: 10px;
+    }
+    .btn-google {
+        background-color: #4285F4;
+    }
+ 
+    .form-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); /* Dua kolom, masing-masing setengah lebar */
+        gap: 10px; /* Jarak antar field */
+    }
+    .form-outline-regis {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 10px;
+        font-size: 13px;
+    }
+    .form-control-regis {
+        width: 100%;
+        padding: 8px;
+        border-radius: 2px;
+        border: 1px solid #ced4da;
+        text-align: left;
+        font-size: 12px;
+    }
+    .form-label-regis {
+        font-weight: 600;
+        font-size: 12px;
+        margin-bottom: 5px;
+    }
+    .btn-register {
+        background-color: #131842;
+        color: #fff;
+        width: 70%;
+        padding: 7px;
+        border: none;
+        border-radius: 5px;
+        font-size: 14px;
+        cursor: pointer;
+        margin: 10px auto 0 auto;
+        display: block;
+    }
+    .btn-register:hover {
+        background-color: #E68369;
+    }
+    .login-link {
+        text-align: center;
+        font-size: 12px;
+        margin-top: 10px;
+    }
+    .login-link a {
+        text-decoration: none;
+        color: #131842;
+    }
+    .login-link a:hover {
+        text-decoration: underline;
+    }
+</style>
+{% endblock %}

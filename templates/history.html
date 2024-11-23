@@ -1,0 +1,136 @@
+{% extends "main_layout.html" %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>Scan History</title>
+    <style>
+
+
+        /* Container utama */
+        .container-history {
+            text-align: center;
+            width: 100%;
+            padding: 2.5rem;
+            background-color: #FBF6E2;
+            border-radius: 5px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            border: 1px solid #131842; /* Border dominan warna utama */
+            position: relative;
+            margin-top: 140px;
+            margin-left: 200px;
+            margin-bottom: 100px;
+        }
+
+        /* Judul */
+        .history-title {
+            font-size: 30px;
+            color: #131842;
+            font-weight: 500;
+            margin-bottom: 2rem;
+        }
+
+        /* Tabel */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        thead {
+            background-color: #131842;
+            color: #ffffff;
+            text-transform: uppercase;
+        }
+
+        thead th {
+            padding: 1rem;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        tbody tr {
+            transition: background-color 0.3s ease;
+        }
+
+        tbody tr:hover {
+            background-color: #eceffd;
+        }
+
+        tbody td {
+            padding: 1rem;
+            text-align: center;
+            font-size: 14px;
+            font-weight: medium;
+            color: #000000;
+            border-bottom: 1px solid #ddd;
+        }
+
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+    
+
+        /* Responsivitas */
+        @media (max-width: 768px) {
+            .container-history {
+                padding: 1.5rem;
+            }
+
+            .history-title {
+                font-size: 2rem;
+            }
+
+            table thead th, table tbody td {
+                padding: 0.8rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container-history">
+        <h1 class="history-title">Your Scan History</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Total Scan</th>
+                    <th>Tanggal</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if not session['user_id'] %}
+                    <tr>
+                        <td colspan="2">Silakan login terlebih dahulu.</td>
+                    </tr>
+                    <!-- <tr>
+                        <td colspan="2">
+                            <a href="/login" class="btn-login">Login</a>
+                        </td>
+                    </tr> -->
+                {% elif results %}
+                    {% for result in results %}
+                        <tr>
+                            <td>{{ result.total_scan }}</td>
+                            <td>{{ result.scan_date.strftime('%d-%m-%Y') }}</td>
+                        </tr>
+                    {% endfor %}
+                {% else %}
+                    <tr>
+                        <td colspan="2">Tidak ada data.</td>
+                    </tr>
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
+{% endblock %}

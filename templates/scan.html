@@ -1,0 +1,35 @@
+{% extends "main_layout.html" %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <head>
+       
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>SCAN YOUR CV HERE</title>
+            <link rel="stylesheet" href="{{ url_for('static', filename='scan.css') }}">
+    </head>
+    
+</head>
+<body-s>
+    <div class="scan__input">
+    <h1 class="titleh1">SCAN YOUR CV HERE</h1>
+    <form class="upload-form" action="{{ url_for('scan') }}" method="post" enctype="multipart/form-data">
+        <!-- Input untuk CV dengan multiple upload -->
+        <label class="upload-label-cv" for="cv">Unggah CV (PDF):</label>
+        <input class="file-input-cv" type="file" name="cv[]" multiple required><br><br>
+        
+        <!-- Input untuk Deskripsi Pekerjaan (tanpa multiple karena hanya satu file) -->
+        <label class="upload-label-cv" for="job_description">Unggah Deskripsi Pekerjaan (PDF):</label>
+        <input class="file-input-cv" type="file" name="job_description" required><br><br>
+    
+        <!-- Tombol submit -->
+        <input class="submit-button" type="submit" value="Scan">
+    </form>
+    
+    
+</div>
+</body-s>
+</html>
+{% endblock %}
